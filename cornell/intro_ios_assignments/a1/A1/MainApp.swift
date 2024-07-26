@@ -21,7 +21,7 @@ class MainApp {
         
         // Hint: Use string interpolation.
         
-        return "" // Replace this line
+        return "Hi! My name is \(name). I am \(age) years old." // Replace this line
     }
     
     /**
@@ -38,7 +38,7 @@ class MainApp {
         
         // Hint: The parameter `year` is an Int, but the values in the dictionary are of type String.
         
-        return [:] // Replace this line
+        return ["name": "\(name)", "netid": "\(netid)", "year": "\(year)"] // Replace this line
     }
     
     /**
@@ -50,8 +50,14 @@ class MainApp {
         // TODO: 3 ⭐️⭐️
         
         // Hint: An integer divided by 2 with remainder 0 is even.
-
-        return 0 // Replace this line
+        var count: Int = 0
+        for elem in arr {
+            if elem % 2 == 0 {
+                count += 1
+            }
+        }
+        
+        return count // Replace this line
     }
     
     /**
@@ -66,8 +72,11 @@ class MainApp {
         // Hint: You will need to use two functions provided by Swift. If you press `.` on
         // your keyboard after the variable name, Xcode will provide a list of functions
         // that you could use.
-        
-        return [] // Replace this line
+        var result: [String] = []
+        for elem in arr {
+            result.append(elem.uppercased())
+        }
+        return result // Replace this line
     }
     
     /**
@@ -81,8 +90,17 @@ class MainApp {
         // TODO: 5 ⭐️⭐️⭐️
         
         // Hint: How do you specify the number of iterations using a for loop?
+        if count <= 0 {
+            return []
+        } else {
+            var result:[String] = []
+            for _ in 1...count {
+                result.append(str)
+            }
+            return result
+        }
         
-        return [] // Replace this line
+
     }
     
     /**
@@ -99,8 +117,13 @@ class MainApp {
         // TODO: 6 ⭐️⭐️⭐️
         
         // Hint: Use the `split` method. Google if needed.
+        if str.isEmpty {
+            return nil
+        }
+        let arr = str.split(separator: " ")
+        
 
-        return nil // Replace this line
+        return arr.count // Replace this line
     }
     
     /**
@@ -114,10 +137,12 @@ class MainApp {
      */
     func containsNum(_ str: String?) -> Bool {
         // TODO: 7 ⭐️⭐️⭐️⭐️
-        
+
         // Hint: Unwrap the optional!
+        guard let unwrapped = str else
+        {return false}
         
-        return false // Replace this line
+        return unwrapped.contains { $0.isNumber }
     }
     
     /**
@@ -150,8 +175,8 @@ class MainApp {
         // TODO: 8 ⭐️⭐️⭐️⭐️
         
         // Hint: Use `getSubteamLead` above as a helper function
-        
-        return "" // Replace this line
+        return getSubteamLead(subteam: subteam)?.uppercased() ?? "Invalid"
+         // Replace this line
     }
     
     /**
@@ -164,13 +189,33 @@ class MainApp {
         `filterImposter(in: ["hello", "nymph", "world"])` returns `["nymph"]`
         `filterImposter(in: ["dry", "cry", "brr"])` returns `["dry", "cry", "brr"]`
      */
+    
+    func containVowel(str: String) -> Bool{
+
+        let vowels: String = "aeiou"
+
+        // return str.contains{vowels.contains($0)}
+        
+        for char in str {
+            for v in vowels {
+                if char == v {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
     func filterImposter(in arr: [String]) -> [String] {
         // TODO: 9 ⭐️⭐️⭐️⭐️⭐️
         
         // Hint: Use the `filter` higher-order function and create your own helper function
         // We did not cover this to get you to Google on your own!
+        // return arr.filter{!containVowel(str: $0)}
         
-        return [] // Replace this line
+        return arr.filter { word in
+            let hasVowel = containVowel(str: word)
+            return !hasVowel
+        }
     }
-    
 }
