@@ -148,7 +148,8 @@ class ProfileVC: UIViewController {
         
         NSLayoutConstraint.activate([
             pushVCButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pushVCButton.topAnchor.constraint(equalTo: MajorLabel.bottomAnchor, constant: 200),
+            //pushVCButton.topAnchor.constraint(equalTo: MajorLabel.bottomAnchor, constant: 200),
+            pushVCButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -64),
             pushVCButton.widthAnchor.constraint(equalToConstant: 329),
             pushVCButton.heightAnchor.constraint(equalToConstant: 56),
         ])

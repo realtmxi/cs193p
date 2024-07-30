@@ -39,6 +39,7 @@ class EditProfileVC: UIViewController {
         setupHometownText()
         setupMajorLabel()
         setupMajorText()
+        setupSaveButton()
     }
     
     init(name: String, bio: String) {
@@ -156,11 +157,26 @@ class EditProfileVC: UIViewController {
         ])
     }
     
-//    private func setupSaveButton() {
-//        saveButton.setTitle("Save", for: .normal)
-//        saveButton.setTitleColor(UIColor.a2.white, for: .normal)
-//        saveButton.backgroundColor = UIColor.a2.ruby
-//        saveButton.layer.cornerRadius = 16
-//
-//    }
+    private func setupSaveButton() {
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitleColor(UIColor.a2.white, for: .normal)
+        saveButton.backgroundColor = UIColor.a2.ruby
+        saveButton.layer.cornerRadius = 16
+        saveButton.addTarget(self, action: #selector(popVC), for: .touchUpInside)
+        
+        view.addSubview(saveButton)
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -64),
+            saveButton.widthAnchor.constraint(equalToConstant: 329),
+            saveButton.heightAnchor.constraint(equalToConstant: 56),
+        ])
+    }
+    
+    @objc private func popVC() {
+        // pop the EditProfileController
+        navigationController?.popViewController(animated: true)
+    }
 }
