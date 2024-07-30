@@ -10,7 +10,6 @@ import UIKit
 class ProfileVC: UIViewController {
     
     // MARK: - Properties (view)
-    private let profileHeaderLabel = UILabel()
     private let profileImageView = UIImageView()
     private let nameLabel = UILabel()
     private let Bio = UILabel()
@@ -22,13 +21,17 @@ class ProfileVC: UIViewController {
     private let pushVCButton = UIButton()
     
     // MARK: - Properties (data)
+    private var majorText: String = "Computer Science"
+    private var hometownText: String = "BeiJing"
+    private var bioText: String = "Never waste diamonds on a hoe"
+    private var nameText: String = "Blair Yang"
     
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Profile"
         view.backgroundColor = UIColor.a2.white
-        setupProfileHeader()
         setupProfileImage()
         setupNameLabel()
         setupBioLabel()
@@ -39,24 +42,12 @@ class ProfileVC: UIViewController {
     }
     
     // MARK: - Set Up Views
-    private func setupProfileHeader() {
-        profileHeaderLabel.textColor = UIColor.a2.black
-        profileHeaderLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        profileHeaderLabel.text = "Profile"
-        
-        view.addSubview(profileHeaderLabel)
-        profileHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            profileHeaderLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            profileHeaderLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-    }
 
     private func setupNameLabel(){
         
         nameLabel.textColor = UIColor.a2.black
         nameLabel.font = .systemFont(ofSize: 38, weight: .semibold)
-        nameLabel.text = "Blair Yang"
+        nameLabel.text = nameText
         view.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -71,7 +62,7 @@ class ProfileVC: UIViewController {
         view.addSubview(profileImageView)
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            profileImageView.topAnchor.constraint(equalTo: profileHeaderLabel.bottomAnchor, constant: 24),
+            profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
             profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             profileImageView.widthAnchor.constraint(equalToConstant: 128),
             profileImageView.heightAnchor.constraint(equalToConstant: 128)
@@ -84,7 +75,7 @@ class ProfileVC: UIViewController {
     private func setupBioLabel(){
         Bio.textColor = UIColor.a2.black
         Bio.font = .italicSystemFont(ofSize: 16)
-        Bio.text = "Never waste diamonds on a hoe"
+        Bio.text = bioText
         
         view.addSubview(Bio)
         Bio.translatesAutoresizingMaskIntoConstraints = false
@@ -97,7 +88,7 @@ class ProfileVC: UIViewController {
     
     private func setupHometown(){
         hometownImageView.image = UIImage(named: "home_icon")
-        hometownLabel.text = "BeiJing, China"
+        hometownLabel.text = hometownText
         hometownLabel.font = .systemFont(ofSize: 14)
         
         view.addSubview(hometownImageView)
@@ -122,7 +113,7 @@ class ProfileVC: UIViewController {
     
     private func setupMajor(){
         MajorImageView.image = UIImage(named:"major_icon")
-        MajorLabel.text = "Computer Science"
+        MajorLabel.text = majorText
         MajorLabel.font = .systemFont(ofSize: 14)
         
         view.addSubview(MajorImageView)
@@ -164,7 +155,8 @@ class ProfileVC: UIViewController {
     }
     
     @objc private func pushVC() {
-        let EditProfileVC = EditProfileVC()
+        // Push EditProfileVC to Navigation Stack
+        let EditProfileVC = EditProfileVC(name: nameText, bio: bioText)
         navigationController?.pushViewController(EditProfileVC, animated: true)
         print("Push VC button tapped")
     }
