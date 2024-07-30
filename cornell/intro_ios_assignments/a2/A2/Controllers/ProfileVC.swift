@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol UpdateTextDelegate: AnyObject {
+    func updateHometown(newHometown: String)
+    func updateMajor(newMajor: String)
+}
+
 class ProfileVC: UIViewController {
     
     // MARK: - Properties (view)
@@ -152,15 +157,26 @@ class ProfileVC: UIViewController {
             pushVCButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -64),
             pushVCButton.widthAnchor.constraint(equalToConstant: 329),
             pushVCButton.heightAnchor.constraint(equalToConstant: 56),
-        ])
+        ]) 
     }
     
     @objc private func pushVC() {
         // Push EditProfileVC to Navigation Stack
-        let EditProfileVC = EditProfileVC(name: nameText, bio: bioText)
+        let EditProfileVC = EditProfileVC(name: nameText, bio: bioText, delegate: self)
         navigationController?.pushViewController(EditProfileVC, animated: true)
         print("Push VC button tapped")
     }
     
+}
 
+extension ProfileVC: UpdateTextDelegate {
+    func updateHometown(newHometown: String) {
+        self.hometownText = newHometown
+        self.hometownLabel.text = newHometown
+    }
+    
+    func updateMajor(newMajor: String) {
+        self.majorText = newMajor
+        self.MajorLabel.text = newMajor
+    }
 }

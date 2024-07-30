@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class EditProfileVC: UIViewController {
     
     // MARK: - Properties (view)
@@ -24,6 +25,8 @@ class EditProfileVC: UIViewController {
     // MARK: - Properties (data)
     private var nameText: String
     private var bioText: String
+    
+    private weak var delegate: UpdateTextDelegate?
 
     
     // MARK: - viewDidLoad and init
@@ -42,9 +45,10 @@ class EditProfileVC: UIViewController {
         setupSaveButton()
     }
     
-    init(name: String, bio: String) {
+    init(name: String, bio: String, delegate: UpdateTextDelegate) {
         self.nameText = name
         self.bioText = bio
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -115,6 +119,7 @@ class EditProfileVC: UIViewController {
         hometownText.layer.borderWidth = 1
         hometownText.layer.borderColor = UIColor.a2.silver.cgColor
         hometownText.layer.cornerRadius = 8
+        hometownText.placeholder = "Change me"
         
         view.addSubview(hometownText)
         hometownText.translatesAutoresizingMaskIntoConstraints = false
@@ -145,6 +150,7 @@ class EditProfileVC: UIViewController {
         MajorText.layer.borderWidth = 1
         MajorText.layer.borderColor = UIColor.a2.silver.cgColor
         MajorText.layer.cornerRadius = 8
+        MajorText.placeholder = "Change me"
         
         view.addSubview(MajorText)
         MajorText.translatesAutoresizingMaskIntoConstraints = false
@@ -178,5 +184,7 @@ class EditProfileVC: UIViewController {
     @objc private func popVC() {
         // pop the EditProfileController
         navigationController?.popViewController(animated: true)
+        delegate?.updateHometown(newHometown: hometownText.text ?? "")
+        delegate?.updateMajor(newMajor: MajorText.text ?? "")
     }
 }
