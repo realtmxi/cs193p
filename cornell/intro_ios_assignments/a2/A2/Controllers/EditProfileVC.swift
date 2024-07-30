@@ -11,6 +11,7 @@ class EditProfileVC: UIViewController {
     
     // MARK: - Properties (view)
     
+    
     // MARK: - Properties (data)
     
     // MARK: - viewDidLoad and init
