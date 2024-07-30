@@ -19,6 +19,8 @@ class ProfileVC: UIViewController {
     private let MajorLabel = UILabel()
     private let MajorImageView = UIImageView()
     
+    private let pushVCButton = UIButton()
+    
     // MARK: - Properties (data)
     
     // MARK: - viewDidLoad
@@ -32,6 +34,7 @@ class ProfileVC: UIViewController {
         setupBioLabel()
         setupHometown()
         setupMajor()
+        setupPushVCButton()
         
     }
     
@@ -141,5 +144,30 @@ class ProfileVC: UIViewController {
             
         ])
     }
+    
+    private func setupPushVCButton() {
+        pushVCButton.setTitle("Edit Profile", for: .normal)
+        pushVCButton.setTitleColor(UIColor.a2.white, for: .normal)
+        pushVCButton.backgroundColor = UIColor.a2.ruby
+        pushVCButton.layer.cornerRadius = 16
+        pushVCButton.addTarget(self, action: #selector(pushVC), for:.touchUpInside)
+        
+        view.addSubview(pushVCButton)
+        pushVCButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            pushVCButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pushVCButton.topAnchor.constraint(equalTo: MajorLabel.bottomAnchor, constant: 200),
+            pushVCButton.widthAnchor.constraint(equalToConstant: 329),
+            pushVCButton.heightAnchor.constraint(equalToConstant: 56),
+        ])
+    }
+    
+    @objc private func pushVC() {
+        let EditProfileVC = EditProfileVC()
+        navigationController?.pushViewController(EditProfileVC, animated: true)
+        print("Push VC button tapped")
+    }
+    
 
 }

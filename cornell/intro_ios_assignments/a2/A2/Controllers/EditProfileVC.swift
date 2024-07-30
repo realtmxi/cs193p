@@ -10,6 +10,7 @@ import UIKit
 class EditProfileVC: UIViewController {
     
     // MARK: - Properties (view)
+
     
     
     // MARK: - Properties (data)
@@ -18,8 +19,12 @@ class EditProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.a2.white
+        
     }
     
     // MARK: - Set Up Views
     
+    
+
 }
