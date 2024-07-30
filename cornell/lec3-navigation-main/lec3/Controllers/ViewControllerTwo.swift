@@ -7,9 +7,6 @@
 
 import UIKit
 
-protocol UpdateTextDelegate: AnyObject {
-    func updateText(newText: String)
-}
 
 class ViewControllerTwo: UIViewController {
     

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol UpdateTextDelegate: AnyObject {
+    func updateText(newText: String)
+}
+
 class ViewControllerOne: UIViewController {
     
     // MARK: - Properties (view)
